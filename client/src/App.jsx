@@ -1,15 +1,30 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './pages/Login';  // Import Login page
-import Home from './pages/Home';   
-export default function App() {
+// src/App.jsx
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import RoleSelection from './pages/RoleSelection';
+import Login from './pages/Login';
+import RegisterMentor from './pages/Mentors/RegisterMentor';
+import RegisterMentee from './pages/Mentees/RegisterMentee';
+import MentorDashboard from './pages/Mentors/MentorDashboard';
+import MenteeDashboard from './pages/Mentees/MenteeDashboard';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Toastify CSS
+
+const App = () => {
   return (
     <Router>
+      <ToastContainer />
       <Routes>
-        {/* Define routes */}
-        <Route path="/" element={<Home />} />  {/* Home page */}
-        <Route path="/login" element={<Login />} />  {/* Login page */}
+        <Route path="/" element={<Home />} />
+        <Route path="/role-selection" element={<RoleSelection />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/mentors/register" element={<RegisterMentor />} />
+        <Route path="/mentees/register" element={<RegisterMentee />} />
+        <Route path="/mentors/dashboard" element={<MentorDashboard />} />
+        <Route path="/mentees/dashboard" element={<MenteeDashboard />} />
       </Routes>
     </Router>
   );
-}
+};
+
+export default App;

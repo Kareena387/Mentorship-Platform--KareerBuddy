@@ -30,7 +30,7 @@ const page: React.FC = () => {
     ];
 
     return (
-        <div>
+        <div className="bg-green-50/30">
             <Navbar />
             {/* Home page */}
             <div className="max-w-4xl mx-auto mt-8">

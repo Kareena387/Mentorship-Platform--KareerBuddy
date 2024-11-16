@@ -7,39 +7,88 @@ import Footer from '@/components/footer'
 const page: React.FC = () => {
     const mentors = [
         {
-            imageSrc: "https://via.placeholder.com/100",
+            imageSrc: "https://randomuser.me/api/portraits/men/1.jpg",
             name: "John Doe",
             jobTitle: "Senior Developer",
             jobDomain: "ML/AI",
             shortDesc: "Experienced mentor in Machine Learning and Artificial Intelligence",
         },
         {
-            imageSrc: "https://via.placeholder.com/100",
-            name: "Jane Smith",
+            imageSrc: "https://randomuser.me/api/portraits/men/2.jpg",
+            name: "David Smith",
             jobTitle: "Data Scientist",
             jobDomain: "ML/AI",
             shortDesc: "Passionate about helping students learn Data Science.",
         },
         {
-            imageSrc: "https://via.placeholder.com/100",
+            imageSrc: "https://randomuser.me/api/portraits/men/3.jpg",
             name: "Sam Wilson",
             jobTitle: "AI Specialist",
             jobDomain: "AI",
             shortDesc: "Specializing in AI research and mentoring future innovators.",
         },
+        {
+            imageSrc: "https://randomuser.me/api/portraits/men/4.jpg",
+            name: "Michael Johnson",
+            jobTitle: "Full Stack Developer",
+            jobDomain: "Web Development",
+            shortDesc: "Helping students build strong foundations in web development.",
+        },
+        {
+            imageSrc: "https://randomuser.me/api/portraits/men/5.jpg",
+            name: "Robert Brown",
+            jobTitle: "Blockchain Expert",
+            jobDomain: "Blockchain",
+            shortDesc: "Expert in blockchain development and decentralized systems.",
+        },
+        {
+            imageSrc: "https://randomuser.me/api/portraits/men/6.jpg",
+            name: "James Lee",
+            jobTitle: "Cloud Architect",
+            jobDomain: "Cloud Computing",
+            shortDesc: "Mentoring future cloud engineers with a focus on scalable solutions.",
+        },
+        {
+            imageSrc: "https://randomuser.me/api/portraits/men/7.jpg",
+            name: "Daniel White",
+            jobTitle: "Cybersecurity Consultant",
+            jobDomain: "Cybersecurity",
+            shortDesc: "Protecting systems and data by educating the next generation of security experts.",
+        },
+        {
+            imageSrc: "https://randomuser.me/api/portraits/men/8.jpg",
+            name: "William Harris",
+            jobTitle: "Software Engineer",
+            jobDomain: "Software Development",
+            shortDesc: "Guiding students to become proficient software engineers in various programming languages.",
+        },
+        {
+            imageSrc: "https://randomuser.me/api/portraits/men/9.jpg",
+            name: "Ethan Martinez",
+            jobTitle: "Data Engineer",
+            jobDomain: "Big Data",
+            shortDesc: "Teaching students the importance of data engineering for scalable systems.",
+        },
+        {
+            imageSrc: "https://randomuser.me/api/portraits/men/10.jpg",
+            name: "Alexander Scott",
+            jobTitle: "DevOps Engineer",
+            jobDomain: "DevOps",
+            shortDesc: "Helping students learn the practices that enhance development and operational workflows.",
+        },
     ];
+
 
     return (
         <div className="bg-green-50/30">
             <Navbar />
             {/* Home page */}
-            <div className="max-w-4xl mx-auto mt-8">
+            <div className="max-w-4xl mx-auto ">
                 {/* Page Heading */}
-                {/* <h1 className="text-3xl font-bold text-center mb-8">Meet Our Mentors</h1> */}
                 {/* Mentor Profile Cards as Facebook-like Posts */}
                 <div className="space-y-6">
                     {mentors.map((mentor, index) => (
-                        <div key={index} className="bg-white p-4 rounded-lg shadow-md">
+                        <div key={index} className="bg-white p-4 rounded-lg  hover:shadow-green-400/30 hover:bg-green-100/20 shadow-md">
                             <div className="flex items-center mb-4">
                                 {/* Mentor Image */}
                                 <div className="w-12 h-12 rounded-full overflow-hidden mr-4">

@@ -1,11 +1,11 @@
 // components/Navbar.tsx
-
-import React from 'react';
+"use client"
+import React, { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
 const Navbar = () => {
     return (
-        <nav className="bg-white shadow-md px-4 py-4">
+        <nav className="bg-white shadow-md px-4 py-1">
             <WelcomeBar />
             <div className="flex items-center justify-between  mx-auto">
 
@@ -39,40 +39,60 @@ const Navbar = () => {
 
 export default Navbar;
 
+// welcome bar
 
-// components/WelcomeBar.tsx
 const WelcomeBar = () => {
+    const messages = [
+        "Welcome to KareerBuddy! Ready to connect with an inspiring mentor?",
+        "Excited to meet your mentor? Welcome to KareerBuddy, where opportunities await.",
+        "Join KareerBuddy, where students meet mentors for growth and success."
+    ];
+
+    const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+    const [progress, setProgress] = useState(0);
+
+    // Change the message every 3 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setProgress(0); // Reset the progress
+            setCurrentMessageIndex((prevIndex) => (prevIndex + 1) % messages.length);
+        }, 5000);
+
+        // Handle progress bar update every 30ms
+        const progressInterval = setInterval(() => {
+            setProgress((prevProgress) => {
+                if (prevProgress < 100) {
+                    return prevProgress + (100 / 70); // 100% over 3 seconds
+                }
+                return prevProgress;
+            });
+        }, 100);
+
+        // Clean up intervals on component unmount
+        return () => {
+            clearInterval(interval);
+            clearInterval(progressInterval);
+        };
+    }, []);
+
     return (
-        <div className="bg-green-600 text-white py-2 text-center mb-2 text-sm rounded">
-            Welcome student to KareerBuddy. Connect with a mentor.
+        <div className="relative w-full h-10 mb-2">
+
+            <div className="bg-green-600 text-white w-full h-full flex justify-center items-center text-center text-base rounded">
+                {messages[currentMessageIndex]}
+            </div>
+            <div
+                className="absolute  left-0 bg-yellow-500 h-1"
+                style={{ width: `${progress}%`, transition: "width 0.1s linear" }}
+            />
         </div>
     );
 };
 
+
+
+
 // // components/CategoryCards.tsx
-
-// const categories = [
-//     { name: 'Frontend', color: 'bg-blue-600' },
-//     { name: 'Backend', color: 'bg-red-600' },
-//     { name: 'ML/AI', color: 'bg-yellow-600' },
-//     { name: 'UI/UX', color: 'bg-purple-600' },
-//     { name: 'Digital Marketing', color: 'bg-green-600' },
-// ];
-
-// const CategoryCards = () => {
-//     return (
-//         <div className="flex mx-auto">
-//             {categories.map((category, index) => (
-//                 <div key={index} className={`flex  items-center justify-center text-white p-1 rounded m-1 `}>
-//                     <h3 className="text-base text-gray-700 hover:text-green-600 font-normal border border-1 hover:border-green-600 rounded-md m-2 p-2">{category.name}</h3>
-//                 </div>
-//             ))}
-//         </div>
-//     );
-// };
-
-
-// components/CategoryCards.tsx
 
 const categories = [
     { name: 'Frontend', color: 'bg-blue-600' },

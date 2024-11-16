@@ -49,14 +49,14 @@ export default function Footer() {
                         <h3 className="text-lg font-semibold mb-4 text-green-700">Contact Us</h3>
                         <ul className="space-y-2 text-gray-700">
                             <li>Email: <a href="mailto:support@kareerbuddy.com" className="hover:text-green-500">support@kareerbuddy.com</a></li>
-                            <li>Phone: <a href="tel:+1234567890" className="hover:text-green-500">+1 234 567 890</a></li>
-                            <li>Address: <span>123 KareerBuddy St, City, Country</span></li>
+                            <li>Phone: <a href="tel:+1234567890" className="hover:text-green-500">+977-9812333221</a></li>
+                            <li>Address: <span>Naxal, Kathmandu, Nepal</span></li>
                         </ul>
                     </div>
 
                 </div>
                 <div className="border-t mt-8 pt-4 text-center text-sm text-gray-600">
-                    © {new Date().getFullYear()} KareerBuddy. All rights reserved.
+                    ©2010  -   © {new Date().getFullYear()} KareerBuddy. All rights reserved.
                 </div>
             </div>
         </footer>

@@ -44,7 +44,8 @@ const Page: React.FC = () => {
         <div >
 
             <div className="  z-10 max-w-md mt-24 mx-auto  p-6 bg-white shadow-lg rounded-lg">
-                <h1 className="text-3xl font-semibold text-center mb-6">Sign Up</h1>
+                <p className="text-green-500  text-2xl mb-2 text-center font-semibold">KareerBuddy</p>
+                <p className="text-center text-lg mb-5 font-medium">SignUp</p>
 
                 {/* User Role (Student or Mentor) */}
                 <div className="mb-6">
@@ -53,7 +54,7 @@ const Page: React.FC = () => {
                             onClick={() => handleRoleChange(true)}
                             className={`px-4 py-2 rounded-md text-white ${isStudent === true ? "bg-green-600" : "bg-gray-300"}`}
                         >
-                            Student
+                            Mentee
                         </button>
                         <button
                             onClick={() => handleRoleChange(false)}
@@ -184,7 +185,7 @@ const Page: React.FC = () => {
                             </div>
                         </>
                     )}
-                    <p>Already have Account?  <a href="/" className="text-green-500 hover:underline">
+                    <p className="mb-4 text-center">Already have Account?  <a href="/" className="text-green-500 hover:underline">
                         Login
                     </a></p>
 

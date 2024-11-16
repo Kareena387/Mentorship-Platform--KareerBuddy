@@ -135,7 +135,9 @@ const LoginPage: React.FC = () => {
         >
             <div className="absolute inset-0 bg-green-700 opacity-40"></div> {/* White overlay with 20% opacity */}
             <div className="relative z-10 bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-                <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
+                {/* <div>KareerBuddy </div> */}
+                <p className="text-green-500  text-2xl mb-2 text-center font-semibold">KareerBuddy</p>
+
 
                 {error && <div className="text-red-500 text-center mb-4">{error}</div>}
 

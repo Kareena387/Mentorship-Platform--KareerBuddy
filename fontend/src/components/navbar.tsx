@@ -107,6 +107,7 @@ const CategoryCards = () => {
         <div className="overflow-hidden relative">
             {/* Scrollable container */}
             <div className="flex animate-scroll whitespace-nowrap">
+
                 {categories.map((category, index) => (
                     <div
                         key={index}
@@ -121,4 +122,7 @@ const CategoryCards = () => {
         </div>
     );
 };
+
+
+
 

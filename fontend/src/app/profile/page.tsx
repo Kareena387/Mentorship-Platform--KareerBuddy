@@ -74,7 +74,6 @@ const courses = [
 
 const MentorProfile = () => {
     const router = useRouter();
-
     return (
         <div>
             <Navbar />
@@ -100,7 +99,6 @@ const MentorProfile = () => {
                                     <Linkedin className="w-6 h-6 hover:text-green-600" />
                                 </div>
                             </div>
-
                             <div className="flex-grow">
                                 <div className="flex justify-between">
                                     <h1 className="text-2xl font-bold text-green-500 mb-4">
@@ -129,8 +127,6 @@ const MentorProfile = () => {
                                         <Briefcase className="w-5 h-5 text-green-500" />
                                         <span>Senior Educational Consultant</span>
                                     </div>
-
-
                                     {/*  */}
                                     <h2 className="font-semibold text-green-500 mb-2">Work Experience</h2>
                                     <ul className="list-disc list-inside space-y-1 ml-4">
@@ -141,18 +137,14 @@ const MentorProfile = () => {
                                 </div>
 
                                 {/* about  */}
-
                                 <div className="mt-4">
                                     <h2 className="font-semibold text-green-500 mb-2">About</h2>
                                     <p className="text-gray-600">
                                         Dedicated educator with a passion for helping students reach their full potential.
                                         Specializing in personalized learning and cognitive development strategies.
-
                                     </p>
                                 </div>
                             </div>
-
-
                         </div>
 
                         {/* Courses Section */}

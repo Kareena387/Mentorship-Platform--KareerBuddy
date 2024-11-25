@@ -2,6 +2,55 @@ const User = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+exports.signup = async (req, res) => {
+    try {
+        const { name, email, password, role } = req.body;
+
+        if (!name || !email || !password || !role) {
+            return res.status(400).json({ message: 'All fields are required.' });
+        }
+
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ message: 'User already exists.' });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const newUser = new User({ name, email, password: hashedPassword, role });
+        await newUser.save();
+
+        res.status(201).json({ message: 'User created successfully.' });
+    } catch (err) {
+=======
+// exports.signup = async (req, res) => {
+//     try {
+//         const { name, email, password, role } = req.body;
+
+//         if (!name || !email || !password || !role) {
+//             return res.status(400).json({ message: 'All fields are required.' });
+//         }
+
+//         const existingUser = await User.findOne({ email });
+//         if (existingUser) {
+//             return res.status(400).json({ message: 'User already exists.' });
+//         }
+
+//         const hashedPassword = await bcrypt.hash(password, 10);
+
+//         const newUser = new User({ name, email, password: hashedPassword, role });
+//         await newUser.save();
+
+//         res.status(201).json({ message: 'User created successfully.' });
+//     } catch (err) {
+//         res.status(500).json({ message: 'Server error', error: err.message });
+//     }
+// };
+
+>>>>>>> a8f735f11acf7e135b919a650a64a12653d4ab1d
 
 exports.signup = async (req, res) => {
     try {
@@ -49,6 +98,7 @@ exports.signup = async (req, res) => {
 
     } catch (err) {
         // Handle errors
+>>>>>>> 38adc6d5eed44e57b237a02d8df3e95c25ccc280
         res.status(500).json({ message: 'Server error', error: err.message });
     }
 };

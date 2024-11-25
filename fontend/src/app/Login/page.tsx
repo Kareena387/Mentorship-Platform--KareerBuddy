@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 38adc6d5eed44e57b237a02d8df3e95c25ccc280
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";

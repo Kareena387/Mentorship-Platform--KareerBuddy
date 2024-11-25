@@ -13,6 +13,34 @@ const userSchema = new mongoose.Schema({
     officeName: { type: String },
     jobTitle: { type: String },
     workingExperience: { type: String },
+
+
+
+    // Mentor Specific
+    availability: { type: [String], enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] },
+    experienceSummary: { type: String },
+    certifications: { type: [String] },
+    hourlyRate: { type: Number, min: 0 },
+    skills: { type: [String] },
+    ratings: [
+        {
+            studentId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+            rating: { type: Number, min: 1, max: 5 },
+            review: { type: String }
+        }
+    ],
+
+    // Student Specific
+    learningGoals: { type: String },
+    preferredMentorCriteria: { type: String },
+
+    // Common Fields
+    profilePicture: { type: String },
+    location: { type: String },
+
+    // Social/Networking
+    linkedIn: { type: String },
+    website: { type: String },
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);

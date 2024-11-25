@@ -1,11 +1,12 @@
 
-"use client"
+"use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
 const LoginPage: React.FC = () => {
     const [formData, setFormData] = useState({ email: "", password: "" });
     const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
 
     // Handle form input changes
@@ -18,15 +19,35 @@ const LoginPage: React.FC = () => {
     };
 
     // Handle form submission
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setError("");
+        setIsLoading(true);
 
-        const { email, password } = formData;
-        // Mock validation for demo purposes
-        if (email === "admin@example.com" && password === "password") {
-            router.push("/dashboard"); // Redirect to dashboard or home page
-        } else {
-            setError("Invalid email or password");
+        try {
+            const response = await fetch(`http://localhost:5000/api/auth/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || "Login failed");
+            }
+
+            // Store the token (optional)
+            localStorage.setItem("token", data.token);
+
+            // Redirect to the home/dashboard page
+            router.push("/Home");
+        } catch (err: any) {
+            setError(err.message);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -34,19 +55,16 @@ const LoginPage: React.FC = () => {
         <div
             className="relative flex items-center justify-center min-h-screen bg-cover bg-center"
             style={{
-                backgroundImage: "url('https://cdn.pixabay.com/photo/2019/03/03/20/23/background-4032775_640.png')"
+                backgroundImage: "url('https://cdn.pixabay.com/photo/2019/03/03/20/23/background-4032775_640.png')",
             }}
         >
-            <div className="absolute inset-0 bg-green-700 opacity-40"></div> {/* White overlay with 20% opacity */}
+            <div className="absolute inset-0 bg-green-700 opacity-40"></div>
             <div className="relative z-10 bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-                {/* <div>KareerBuddy </div> */}
-                <p className="text-green-500  text-2xl mb-2 text-center font-semibold">KareerBuddy</p>
-
+                <p className="text-green-500 text-2xl mb-2 text-center font-semibold">KareerBuddy</p>
 
                 {error && <div className="text-red-500 text-center mb-4">{error}</div>}
 
                 <form onSubmit={handleSubmit}>
-                    {/* Email Input */}
                     <div className="mb-4">
                         <label className="block font-medium text-gray-700 mb-2">Email</label>
                         <input
@@ -59,8 +77,6 @@ const LoginPage: React.FC = () => {
                             required
                         />
                     </div>
-
-                    {/* Password Input */}
                     <div className="mb-6">
                         <label className="block font-medium text-gray-700 mb-2">Password</label>
                         <input
@@ -73,19 +89,13 @@ const LoginPage: React.FC = () => {
                             required
                         />
                     </div>
-
-                    {/* Login Button */}
                     <button
                         type="submit"
-                        onClick={() => {
-                            router.push('/Home');
-                        }}
+                        disabled={isLoading}
                         className="w-full py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700 transition duration-300"
                     >
-                        Login
+                        {isLoading ? "Logging in..." : "Login"}
                     </button>
-
-                    {/* Signup Link */}
                     <div className="text-center mt-4">
                         <p className="text-gray-600">
                             Don't have an account?{" "}

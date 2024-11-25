@@ -1,14 +1,16 @@
-
-"use client"
+"use client";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const Page: React.FC = () => {
+    const router = useRouter();
     const [isStudent, setIsStudent] = useState<boolean | null>(null);
-    const [isMentor, setIsMentor] = useState<boolean | null>();
+    const [isMentor, setIsMentor] = useState<boolean | null>(null);
     // Track if the user is a student or mentor
     const [formData, setFormData] = useState({
-        fullName: "",
+        name: "",
         email: "",
+        password: "",  // Add password field
         phone: "",
         dob: "",
         college: "",
@@ -18,7 +20,6 @@ const Page: React.FC = () => {
         workingExperience: "",
     });
 
-    // Handle form input changes
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -27,24 +28,47 @@ const Page: React.FC = () => {
         }));
     };
 
-    // Handle selecting whether the user is a student or mentor
     const handleRoleChange = (role: boolean) => {
         setIsStudent(role);
+        setIsMentor(!role);
     };
 
-    // Handle form submission (for now, we just log the data)
-    const handleSubmit = (e: React.FormEvent) => {
+
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log(formData);
-        // You can replace this with an actual API call to submit the data
+
+        const formDataWithRole = {
+            ...formData,
+            role: isStudent ? 'student' : 'mentor',
+        };
+
+
+        console.log(formDataWithRole);
+        try {
+            const response = await fetch(`http://localhost:5000/api/auth/signup`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formDataWithRole),
+            }
+            )
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.message || "Login failed");
+            }
+            router.push("/Login");
+        }
+        catch (e) {
+            console.warn("API Error" + e)
+        }
     };
 
     return (
-
-        <div >
-
-            <div className="  z-10 max-w-md mt-24 mx-auto  p-6 bg-white shadow-lg rounded-lg">
-                <p className="text-green-500  text-2xl mb-2 text-center font-semibold">KareerBuddy</p>
+        <div>
+            <div className="z-10 max-w-md mt-24 mx-auto p-6 bg-white shadow-lg rounded-lg">
+                <p className="text-green-500 text-2xl mb-2 text-center font-semibold">KareerBuddy</p>
                 <p className="text-center text-lg mb-5 font-medium">SignUp</p>
 
                 {/* User Role (Student or Mentor) */}
@@ -58,7 +82,7 @@ const Page: React.FC = () => {
                         </button>
                         <button
                             onClick={() => handleRoleChange(false)}
-                            className={`px-4 py-2 rounded-md text-white ${isStudent === false ? "bg-green-600" : "bg-gray-300"}`}
+                            className={`px-4 py-2 rounded-md text-white ${isMentor === true ? "bg-green-600" : "bg-gray-300"}`}
                         >
                             Mentor
                         </button>
@@ -72,8 +96,8 @@ const Page: React.FC = () => {
                         <label className="block font-medium text-gray-700">Full Name</label>
                         <input
                             type="text"
-                            name="fullName"
-                            value={formData.fullName}
+                            name="name"
+                            value={formData.name}
                             onChange={handleChange}
                             className="w-full p-2 border border-gray-300 rounded-md"
                             required
@@ -86,6 +110,18 @@ const Page: React.FC = () => {
                             type="email"
                             name="email"
                             value={formData.email}
+                            onChange={handleChange}
+                            className="w-full p-2 border border-gray-300 rounded-md"
+                            required
+                        />
+                    </div>
+
+                    <div className="mb-4">
+                        <label className="block font-medium text-gray-700">Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            value={formData.password}
                             onChange={handleChange}
                             className="w-full p-2 border border-gray-300 rounded-md"
                             required
@@ -185,7 +221,7 @@ const Page: React.FC = () => {
                             </div>
                         </>
                     )}
-                    <p className="mb-4 text-center">Already have Account?  <a href="/" className="text-green-500 hover:underline">
+                    <p className="mb-4 text-center">Already have an account? <a href="/" className="text-green-500 hover:underline">
                         Login
                     </a></p>
 
@@ -193,7 +229,7 @@ const Page: React.FC = () => {
                     <div className="flex justify-center">
                         <button
                             type="submit"
-                            className="w-full py-2 px-4 bg-green-600 text-white rounded-md hover:bg-blue-700"
+                            className="w-full py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700"
                         >
                             Sign Up
                         </button>
@@ -201,10 +237,7 @@ const Page: React.FC = () => {
                 </form>
             </div>
         </div>
-
     );
 };
 
 export default Page;
-
-

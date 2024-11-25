@@ -2,6 +2,7 @@ const User = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+<<<<<<< HEAD
 exports.signup = async (req, res) => {
     try {
         const { name, email, password, role } = req.body;
@@ -22,6 +23,79 @@ exports.signup = async (req, res) => {
 
         res.status(201).json({ message: 'User created successfully.' });
     } catch (err) {
+=======
+// exports.signup = async (req, res) => {
+//     try {
+//         const { name, email, password, role } = req.body;
+
+//         if (!name || !email || !password || !role) {
+//             return res.status(400).json({ message: 'All fields are required.' });
+//         }
+
+//         const existingUser = await User.findOne({ email });
+//         if (existingUser) {
+//             return res.status(400).json({ message: 'User already exists.' });
+//         }
+
+//         const hashedPassword = await bcrypt.hash(password, 10);
+
+//         const newUser = new User({ name, email, password: hashedPassword, role });
+//         await newUser.save();
+
+//         res.status(201).json({ message: 'User created successfully.' });
+//     } catch (err) {
+//         res.status(500).json({ message: 'Server error', error: err.message });
+//     }
+// };
+
+
+exports.signup = async (req, res) => {
+    try {
+        const { name, email, password, role, phone, dob, college, interestedFields, officeName, jobTitle, workingExperience } = req.body;
+
+        // Validate that all required fields are provided
+        if (!name || !email || !password || !role || !phone || !dob) {
+            return res.status(400).json({ message: 'All required fields (name, email, password, role, phone, dob) must be provided.' });
+        }
+
+        // Validate role
+        if (!['student', 'mentor'].includes(role)) {
+            return res.status(400).json({ message: 'Invalid role. Role must be "student" or "mentor".' });
+        }
+
+        // Check if the user already exists
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ message: 'User with this email already exists.' });
+        }
+
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Create a new user object
+        const newUser = new User({
+            name,
+            email,
+            password: hashedPassword,
+            role,
+            phone,
+            dob,
+            college,
+            interestedFields,
+            officeName,
+            jobTitle,
+            workingExperience
+        });
+
+        // Save the new user to the database
+        await newUser.save();
+
+        // Respond with a success message
+        res.status(201).json({ message: 'User created successfully.' });
+
+    } catch (err) {
+        // Handle errors
+>>>>>>> 38adc6d5eed44e57b237a02d8df3e95c25ccc280
         res.status(500).json({ message: 'Server error', error: err.message });
     }
 };

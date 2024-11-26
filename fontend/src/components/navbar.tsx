@@ -5,6 +5,7 @@ import { FaSearch } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
 import Cookies from "js-cookie";  // Optional: can also use localStorage
 import { User } from 'lucide-react';
+import SearchBarWithModal from '@/app/SearchMentor/page';
 
 
 const Navbar = () => {
@@ -49,20 +50,10 @@ const Navbar = () => {
                     <div className="text-xl font-bold text-green-700">KareerBuddy</div>
 
                 </a>    {/* Logo on the left */}
-
-                {/* Search bar in the center */}
-                <div className="flex items-center bg-gray-100 px-4 py-2 rounded-full w-1/2">
-                    <FaSearch className="text-gray-500 mr-2" />
-                    <input
-                        type="text"
-                        placeholder="Search for mentors, events, or blogs..."
-                        className="w-full bg-transparent border-none outline-none text-gray-700"
-                    />
-                </div>
-
+                <SearchBarWithModal />
                 {/* Links on the right */}
                 <div className="flex space-x-6">
-                    <a href="/" className="text-green-700 hover:text-green-500">Mentor</a>
+                    <a href="" className="text-green-700 hover:text-green-500">Mentor</a>
                     <a href="/Student" className="text-green-700 hover:text-green-500">Student</a>
                     <a href="#" className="text-green-700 hover:text-green-500">Events</a>
                     <a href="#" className="text-green-700 hover:text-green-500">Careers</a>

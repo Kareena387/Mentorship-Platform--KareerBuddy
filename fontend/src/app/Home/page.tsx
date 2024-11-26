@@ -47,7 +47,7 @@ const MentorListPage = () => {
         <div className="bg-green-50/30">
             <Navbar />
             {/* Mentor Profile Cards */}
-            <div className="max-w-4xl mx-auto space-y-6">
+            <div className=" grid grid-cols-2 mx-auto space-y-6">
                 {mentors.map((mentor) => (
                     <div key={mentor._id}>
                         <MentorProfileCard

@@ -25,11 +25,8 @@ const MentorProfileCard: React.FC<MentorProfileCardProps> = ({
     const router = useRouter();
 
     const handleViewProfile = () => {
-        router.push(`/mentor/${mentorId}`); // Navigate to mentor profile page using mentorId
+        router.push(`/mentor/${encodeURIComponent(mentorId)}`); // Navigate to mentor profile page using mentorId
     };
-
-
-
     return (
         <div className="flex bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
             {/* Left side - Image */}

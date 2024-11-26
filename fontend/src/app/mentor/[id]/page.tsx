@@ -1,6 +1,5 @@
 
 "use client";
-//  Course Data with icons and active students
 const courses = [
     {
         title: "Frontend React Development",
@@ -76,6 +75,7 @@ interface Mentor {
 const MentorProfile = ({ params }: { params: { id: string } }) => {
     const router = useRouter();
 
+
     const searchParams = useSearchParams();
     const id = params.id
     const [mentor, setMentor] = useState<Mentor | null>(null);
@@ -99,6 +99,8 @@ const MentorProfile = ({ params }: { params: { id: string } }) => {
 
     if (!mentor) return <div>Loading...</div>;
 
+
+    const fieldsArray = mentor.interestedFields.split(",").map(field => field.trim());
     return (
         <div>
             <Navbar />
@@ -173,45 +175,35 @@ const MentorProfile = ({ params }: { params: { id: string } }) => {
                             </div>
                         </div>
 
-                        {/* Courses Offered */}
-                        {/* <div className=""> */}
-                        {/* <h2 className="text-2xl font-bold text-green-500 mb-4">Courses Offered</h2> */}
-                        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {mentor.courses.map((course, index) => (
-                                    <div
-                                        key={index}
-                                        className="p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-transform relative"
+                        <div className="mt-8">
+                            <h2 className="text-2xl font-bold text-green-500 mb-4">Mentoring On</h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {fieldsArray.map((fq, index) => {
+                                    return (<div key={index} className={` p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-transform relative`}
                                     >
-                                        <div className="flex items-center gap-2 mb-3">
-                                            {course.icon}
-                                            <h3 className="text-xl font-semibold text-green-700">{course.title}</h3>
-                                        </div>
-                                        <p className="text-sm text-gray-600 mb-2">{course.description}</p>
-                                        <div className="flex justify-between items-center mb-2">
-                                            <span className={`text-sm text-green-500 font-bold px-2 py-1 rounded ${course.bgColor}`}>
-                                                {course.level}
-                                            </span>
-                                            <div className="flex items-center gap-1 text-sm text-gray-600">
-                                                <Users className="w-4 h-4 text-green-500" />
-                                                {course.students}
-                                            </div>
-                                        </div>
+                                        <p className="font-bold  gap-2 flex">
+                                            <Code className="w-6 h-6 text-blue-500" />    {fq}
+                                        </p>
+
                                         <div className="text-sm mb-2">
-                                            <span className="font-bold">Duration:</span> {course.duration}
+                                            <span className="font-bold">Duration:</span>  3Hrs
                                         </div>
                                         <div className="text-sm mb-4">
-                                            <span className="font-bold">Price:</span> {course.price}
+                                            <span className="font-bold">Price:</span> 20$/Hrs
                                         </div>
-                                        <button className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition-colors">
+
+                                        <span className={`text-sm text-green-500 font-bold px-2 py-1 rounded bg-purple-100  `}>    Beginner  </span>
+
+                                        <button
+                                            className="w-full mt-10 bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition-colors"
+                                        >
                                             Join Now
                                         </button>
-                                    </div>
-                                ))}
-                            </div> */}
 
-                        <div className="mt-8">
-                            <h2 className="text-2xl font-bold text-green-500 mb-4">Courses Offered</h2>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                                    </div>);
+                                })}
+
                                 {courses.map((course, index) => (
                                     <div
                                         key={index}
@@ -219,6 +211,7 @@ const MentorProfile = ({ params }: { params: { id: string } }) => {
                                     >
                                         <div className="flex items-center gap-2 mb-3">
                                             {course.icon}
+                                            {/* course title is name from interestedFields  id the  is 2  interestedFields  (AL ,Backend) then only two course will show other all design alogin remain same */}
                                             <h3 className="text-xl font-semibold text-green-700">{course.title}</h3>
                                         </div>
                                         <p className="text-sm text-gray-600 mb-2">{course.description}</p>
@@ -241,6 +234,10 @@ const MentorProfile = ({ params }: { params: { id: string } }) => {
                                         </button>
                                     </div>
                                 ))}
+
+
+
+
                             </div>
                         </div>
                         {/* </div> */}

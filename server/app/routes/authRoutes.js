@@ -4,10 +4,10 @@ const { signup, login } = require('../controllers/authController');
 const { bulkUpload } = require('./../../app/controllers/bulkUpload')
 const { getAllStudents, getAllMentors } = require('./../../app/controllers/viewAllUsers');
 const { viewProfile } = require('./../../app/controllers/viewProfile');
+const { getRecommendedMentor } = require('./../../app/controllers/getRecommendedMentor');
+
+
 // Import the viewProfile controller
-
-
-
 router.post('/signup', signup);
 router.post('/login', login);
 router.post('/bulkUpload', bulkUpload);
@@ -20,6 +20,9 @@ router.get('/students', getAllStudents);
 
 // GET request to fetch all mentors
 router.get('/mentors', getAllMentors);
+
+router.get('/getRecommendedMentor', getRecommendedMentor);
+
 
 
 

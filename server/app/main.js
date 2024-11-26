@@ -1,31 +1,20 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors'); // Import cors if used
 const connectDB = require('./database');
 const authRoutes = require('./routes/authRoutes');
-<<<<<<< HEAD
-=======
-const cors = require("cors");
-
->>>>>>> 38adc6d5eed44e57b237a02d8df3e95c25ccc280
 
 const app = express();
 
+// Middleware
+app.use(cors()); // Apply cors middleware
 app.use(bodyParser.json());
-<<<<<<< HEAD
 
+// Routes
 app.use('/api/auth', authRoutes);
 
-connectDB();
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-=======
-app.use(cors());
-
-app.use('/api/auth', authRoutes);
-
-// Connect to the database and log a success message
+// Database connection and server start
 connectDB()
     .then(() => {
         console.log('Database connected successfully.');
@@ -35,6 +24,5 @@ connectDB()
     })
     .catch(err => {
         console.error('Database connection failed:', err.message);
-        process.exit(1);
+        process.exit(1); // Exit process if DB connection fails
     });
->>>>>>> 38adc6d5eed44e57b237a02d8df3e95c25ccc280

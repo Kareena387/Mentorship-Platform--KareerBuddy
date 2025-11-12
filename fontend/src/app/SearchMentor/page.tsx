@@ -124,7 +124,8 @@ const SearchBarWithModal = () => {
 
                         {/* No Results Found */}
                         {!isLoading && mentors.length === 0 && searchQuery && !error && (
-                            <p className="text-gray-500">No mentors found for "{searchQuery}".</p>
+                            // <p className="text-gray-500">No mentors found for "{searchQuery}".</p>
+                            <p></p>
                         )}
                     </div>
                 </div>

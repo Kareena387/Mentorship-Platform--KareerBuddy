@@ -56,7 +56,7 @@ export default function Footer() {
 
                 </div>
                 <div className="border-t mt-8 pt-4 text-center text-sm text-gray-600">
-                    ©2010  -   © {new Date().getFullYear()} KareerBuddy. All rights reserved.
+                      © {new Date().getFullYear()} KareerBuddy. All rights reserved.
                 </div>
             </div>
         </footer>

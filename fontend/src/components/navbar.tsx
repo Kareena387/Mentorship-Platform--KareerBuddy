@@ -37,7 +37,7 @@ const Navbar = () => {
     const handleLogoutClick = () => {
         setIsLoggedIn(false);
         localStorage.removeItem("token");  // Remove the token from localStorage
-        router.push("/Login");
+        router.push("/");
         // router.push("/");
     };
 
@@ -54,7 +54,7 @@ const Navbar = () => {
                 {/* Links on the right */}
                 <div className="flex space-x-6">
                     <a href="" className="text-green-700 hover:text-green-500">Mentor</a>
-                    <a href="/Student" className="text-green-700 hover:text-green-500">Student</a>
+                    <a href="/Student" className="text-green-700 hover:text-green-500">Mentee</a>
                     <a href="#" className="text-green-700 hover:text-green-500">Events</a>
                     <a href="#" className="text-green-700 hover:text-green-500">Careers</a>
                     <a href="#" className="text-green-700 hover:text-green-500">Blogs</a>
